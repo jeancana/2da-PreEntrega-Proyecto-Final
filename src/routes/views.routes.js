@@ -26,18 +26,18 @@ router.get('/products', async (req, res) => {
     //console.log(req.query)
     
     const { page } = req.query;
-    //console.log('page',page)
+    console.log('page',page)
 
     // Trayendo los productos Paginados 
     const products = await prdController.getProducts(10, page)
 
-    //console.log("products.totalPages",products.totalPages)
+    //console.log("products.totalPages",products)
 
     // Evitando que el paginado Sea incorrecto antes de renderizar los productos
     // NO se permite page con valores Negativos
     // NO se permite page mayores al total de la pagina existentes
     // NO se permite que lleguen String por el req.query
-    if ( page> 0 && page <= products.totalPages ) {
+    if (products) {
         
         // Esto es un ejemplo para entender el metodo Array.from()
         //console.log(Array.from({ length: 5 }, ( _, i) => i ))
